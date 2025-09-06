@@ -11,8 +11,13 @@ export class UsersService {
     return this.repo.save(user);
   }
 
-  findOne(id: number): Promise<User | null> {
-    return this.repo.findOneBy({ id });
+  async findOne(id: number): Promise<User | null> {
+    const user = await this.repo.findOneBy({ id });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user;
   }
 
   find(email: string) : Promise<User[]>{
