@@ -20,10 +20,10 @@ export class UsersService {
     return user;
   }
 
-  find(email: string) : Promise<User[]>{
+  find(email: string): Promise<User[]> {
     return this.repo.find({ where: { email } });
   }
-  async update(id: number, attrs: Partial<User>):Promise<User | undefined> {
+  async update(id: number, attrs: Partial<User>): Promise<User | undefined> {
     const user = await this.findOne(id);
     if (!user) {
       throw new NotFoundException('User not found');

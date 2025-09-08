@@ -10,3 +10,11 @@ content-type: application/json
 ### Get User By ID
 GET http://localhost:3000/auth/1
 
+### Post Signup User
+POST http://localhost:3000/auth/signup
+content-type: application/json
+
+{
+  "email": "c@ccc.com",
+  "password": "123456"
+}
