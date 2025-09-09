@@ -15,6 +15,15 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-  "email": "c@ccc.com",
+  "email": "3@ccc.com",
+  "password": "123456"
+}
+
+### Post SignIn User
+POST http://localhost:3000/auth/signin
+content-type: application/json
+
+{
+  "email": "3@ccc.com",
   "password": "123456"
 }
