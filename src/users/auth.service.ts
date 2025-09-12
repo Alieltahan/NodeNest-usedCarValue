@@ -31,6 +31,7 @@ export class AuthService {
     const [salt, storedHash] = user.password.split('.');
 
     const hash = (await asyncScrypt(password, salt, 32)) as Buffer;
+
     if (storedHash !== hash.toString('hex')) {
       throw new BadRequestException('Email or password is incorrect');
     }
