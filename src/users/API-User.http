@@ -29,7 +29,7 @@ content-type: application/json
 }
 
 ### GET Who Am I
-GET http://localhost:3000/auth/abc
+GET http://localhost:3000/auth/whoami
 content-type: application/json
 
 ### GET Who Am I
