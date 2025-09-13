@@ -5,15 +5,19 @@ import {
   Post,
   Get,
   Session,
-  Req,
+  UseInterceptors,
 } from '@nestjs/common';
 import { customInterceptorSerialize } from '../interceptors/serialize.interceptor';
 import { AuthService } from './auth.service';
+import { CurrentUser } from './decorators';
 import { CreateUserDto, UserDto } from './dtos';
+import { CurrentUserInterceptor } from './interceptors';
+import { User } from './user.entity';
 import { UsersService } from './users.service';
 
 @Controller('auth')
 @customInterceptorSerialize(UserDto)
+@UseInterceptors(CurrentUserInterceptor)
 export class UsersController {
   constructor(
     private readonly userService: UsersService,
@@ -43,8 +47,8 @@ export class UsersController {
   }
 
   @Get('/whoami')
-  whoAmI(@Session() session: any) {
-    return this.userService.findOne(parseInt(session.userId));
+  whoAmI(@CurrentUser() user: User) {
+    return user;
   }
 
   @Get('/:id')
