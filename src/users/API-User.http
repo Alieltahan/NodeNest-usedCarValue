@@ -35,3 +35,7 @@ content-type: application/json
 ### GET Who Am I
 GET http://localhost:3000/auth/new
 content-type: application/json
+
+### Post SignIn User
+POST http://localhost:3000/auth/signout
+content-type: application/json
