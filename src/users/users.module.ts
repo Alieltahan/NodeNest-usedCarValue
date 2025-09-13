@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthService } from './auth.service';
 import { CurrentUserInterceptor } from './interceptors';
@@ -10,5 +11,12 @@ import { UsersService } from './users.service';
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [UsersController],
   providers: [UsersService, AuthService, CurrentUserInterceptor],
+  // If we want to make our interceptor Global for the Entire App.
+  // providers: [UsersService, AuthService,
+  //     {
+  //     provide: APP_INTERCEPTOR ,
+  //     useClass: CurrentUserInterceptor
+  //     }
+  //   ],
 })
 export class UsersModule {}
