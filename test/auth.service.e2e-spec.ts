@@ -1,7 +1,6 @@
 // src/users/auth.service.e2e-spec.ts
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { unlinkSync, existsSync } from 'fs';
 import { AuthService } from "../src/users/auth.service";
 import { User } from "../src/users/user.entity";
 import { UsersService } from "../src/users/users.service";
@@ -26,12 +25,6 @@ describe('AuthService E2E', () => {
 
 		authService = module.get<AuthService>(AuthService);
 		usersService = module.get<UsersService>(UsersService);
-	});
-
-	afterAll(() => {
-		if (existsSync('test.db.sqlite')) {
-			unlinkSync('test.db.sqlite');
-		}
 	});
 
 	it('should signup and sign in a user', async () => {
