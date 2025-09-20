@@ -21,6 +21,7 @@ export class UsersService {
   find(email: string): Promise<User[]> {
     return this.repo.find({ where: { email } });
   }
+
   async update(id: number, attrs: Partial<User>): Promise<User | undefined> {
     const user = await this.findOne(id);
     if (!user) {

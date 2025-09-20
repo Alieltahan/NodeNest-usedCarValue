@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
-import { AuthGuard } from "../guard";
+import { AdminGuard, AuthGuard } from '../guard';
 import { customInterceptorSerialize } from '../interceptors';
 import { CurrentUser } from '../users/decorators';
 import { User } from '../users/user.entity';
@@ -22,6 +22,7 @@ export class ReportsController {
     return this.reportsService.create(body, user);
   }
 
+  @UseGuards(AdminGuard)
   @Patch('/:id')
   async approveReport(@Param('id') id: string, @Body() body: ApproveReportDto) {
     const getReport= await this.reportsService.changApproval(parseInt(id), body.approved)

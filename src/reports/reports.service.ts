@@ -1,8 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException, UseInterceptors } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CurrentUser } from '../users/decorators';
-import { CurrentUserInterceptor } from '../users/interceptors';
 import { User } from '../users/user.entity';
 import { CreateReportDto } from './dtos';
 import { Report } from './reports.entity';
