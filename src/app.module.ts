@@ -18,7 +18,7 @@ import { ReportsModule } from './reports/reports.module';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'sqlite',
-        database: config.get<string>('DB_NAME'),
+        database: config.get<string>('DB_NAME') || 'db1.sqlite',
         entities: [User, Report],
         // entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: true,

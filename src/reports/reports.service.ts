@@ -1,4 +1,4 @@
-import { Injectable, UseInterceptors } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, UseInterceptors } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CurrentUser } from '../users/decorators';
@@ -17,5 +17,21 @@ export class ReportsService {
     const newReport = this.repo.create(report);
     newReport.user = user;
     return this.repo.save(newReport);
+  }
+
+  findOne(id: number) {
+    if(!id) throw new BadRequestException('Bad request');
+
+    return this.repo.findOneBy({ id })
+  }
+
+  async changApproval(id: number, approved: boolean) {
+    const report = await this.findOne(id)
+
+    if(!report){ throw new NotFoundException('Bad request'); }
+
+    report.approved = approved;
+
+    return this.repo.save(report);
   }
 }

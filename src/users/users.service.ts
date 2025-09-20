@@ -15,12 +15,7 @@ export class UsersService {
     if(!id){
       throw new BadRequestException('Bad Request' );
     }
-    const user = await this.repo.findOneBy({ id });
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-
-    return user;
+     return this.repo.findOneBy({ id });
   }
 
   find(email: string): Promise<User[]> {

@@ -11,3 +11,16 @@ content-Type: application/json
 "lng": -118.2437,
 "price": 20000
 }
+
+### PATCH Report for Approval
+PATCH http://localhost:3000/reports/3
+content-Type: application/json
+
+{
+  "approved": false
+}
+
+
+### GET all Reports
+GET localhost:3000
+content-Type: application/json
