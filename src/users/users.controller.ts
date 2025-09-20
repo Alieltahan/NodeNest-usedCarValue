@@ -8,7 +8,7 @@ import {
   UseInterceptors, UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '../guard';
-import { customInterceptorSerialize } from '../interceptors/serialize.interceptor';
+import { customInterceptorSerialize } from '../interceptors';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators';
 import { CreateUserDto, UserDto } from './dtos';
